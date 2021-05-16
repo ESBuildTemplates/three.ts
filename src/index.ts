@@ -1,17 +1,21 @@
-import * as PIXI from "pixi.js"
+import * as game from "./core/game"
+import * as webgl from "./core/webgl"
 import * as sketch from "./app/sketch"
 
+if (webgl.isWebGLAvailable()) setup().then(update)
+else {
+  const warning = webgl.getWebGLErrorMessage()
+  document.getElementById("container").appendChild(warning)
+}
+
 async function setup() {
-  await new Promise((resolve) => {
-    PIXI.Loader.shared
-      // .add("assets/sprites/animation.json")
-      .add("assets/sprites/hello.png")
-      .load(resolve)
-  })
+  game.renderer.setSize(window.innerWidth, window.innerHeight)
+  document.body.appendChild(game.renderer.domElement)
 
   await sketch.setup()
 }
 
-setup().then(() => {
-  PIXI.Ticker.shared.add(sketch.update, undefined, PIXI.UPDATE_PRIORITY.HIGH)
-})
+function update() {
+  sketch.update().catch(console.error)
+  requestAnimationFrame(update)
+}

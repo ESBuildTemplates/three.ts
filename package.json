@@ -1,5 +1,5 @@
 {
-  "name": "ts-pixi",
+  "name": "ts-three",
   "version": "0.1",
   "license": "MIT",
   "prettier": {
@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.14.20",
-    "@types/pixi.js": "^5.0.0",
+    "@types/three": "^0.128.0",
     "esbuild": "^0.8.31",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
@@ -23,6 +23,6 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "pixi.js": "^6.0.0"
+    "three": "^0.128.0"
   }
 }
